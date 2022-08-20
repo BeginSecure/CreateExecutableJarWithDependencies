@@ -1,19 +1,26 @@
 # CreateExecutableJarWithDependencies
 
-###### Step 001 ######
+###### Step 002 ######
 
-# Generate the code
-mvn archetype:generate -DgroupId=com.beginsecure.app -DartifactId=sample-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+# Add the plugin information to the pom.xml
 
-# Change directories
-cd sample-app
+# Add in the fully qualified name of the class with your main method
 
 # Validate
 mvn validate
 
-# Package
-mvn package
+# Edit the com.beginsecure.app.App.java file to include something requiring a 3rd party library
 
-# Run the code
-java -cp target/sample-app-1.0-SNAPSHOT.jar com.beginsecure.app.App
+# Look up the G.A.V. for the new library in Maven Central (search.maven.org)
+
+# Add that information to the pom.xml file
+
+# Build the code again from within the sample-app directory (where pom.xml is located)
+mvn clean compile assembly:single
+
+# Run the fat jar
+java -jar target/sample-app-1.0-SNAPSHOT-jar-with-dependencies.jar
+
+
+
 
